@@ -1,23 +1,25 @@
-# Employee Manager Day 6
+# DMIT 2008 -Assigment 2A
 
-### EJS TASKS
-- Setup EJS with Node and Express
-- Add the dashboard and the login to the views folder.
-- Add slots to the login template for the password and email warnings.
-- Send the template using res.render(template, {data})
-- Update the index.html page anchor elements to point to the login get route.
+## Purpose
+The purpose of this project is to create a simple web app that allows the user to login or register an account. Once the user is logged in they will have access to the employee manager dashboard.
 
-### Login Service Returns User Object
-- If value isValidUser true redirect to dashboard.
-- Set cookie session variable to true.
+## How to use
 
-### Login Service Returns NULL
-- Render login template and add warnings messages.
-- Adding client side javascript to template.
+- Open the terminal and type in 'npm install'( without the quotes) to install the dependencies.
+- To run the test server, type in the terminal 'npm run server'.
+- To run the build, type in the terminal 'npm run start'.
 
+## Dependencies
 
- 
-
+- cookie-session
+- cors
+- dotenv
+- ejs
+- express
+- express-session
+- express-validator
+- nodemon
+- uuid
 
  
   
