@@ -144,12 +144,12 @@ app.use(express.static(path.join(__dirname, "../client"), {extensions: ["html", 
     if(newUser.user !== null){
       console.log(newUser.validate);
       if(newUser.validate == true){
-        console.log("should work");
+        console.log("redirect login");
         res.redirect("login");
       }
       else
       {
-        console.log("huh2");
+        console.log("else block2 index");
         res.render('signup', {
             username:newUser.username,
             email:newUser.email, 
@@ -163,7 +163,7 @@ app.use(express.static(path.join(__dirname, "../client"), {extensions: ["html", 
     }
     else
     {
-      console.log("huh");
+      console.log("else block1 index");
       res.render('signup', {
         username:newUser.username,
         email:newUser.email, 
