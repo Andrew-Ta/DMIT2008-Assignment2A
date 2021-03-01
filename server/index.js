@@ -11,7 +11,8 @@ const cookSession = require('cookie-session')
 // Importing our Login Service Used With the POST Login Route
 const loginService = require('./services/loginService')
 
-
+//importing register service
+const registerService = require('./services/registerService')
 
 // create an instance of express
 const app = express()
@@ -115,7 +116,56 @@ app.use(express.static(path.join(__dirname, "../client"), {extensions: ["html", 
  
  })
 
- 
+  //Register User MiddleWare
+  //render register page
+  app.get('/signup', (req, res)=>{
+      res.render('signup', {
+      fullname:"", 
+      email:"", 
+      password:"",
+      userID:"", 
+      nameWarning:"", 
+      emailWarning:"",
+      passwordWarning:""
+    });
+  })
+
+  //register post
+  app.post('/signup', (req, res)=>{
+    const credentials = {
+      fullname:req.body.fullname,
+      email:req.body.email,
+      password:req.body.password,
+      userID:""
+    }
+    const newUser = registerService.auth(credentials);
+      res.render('signup', {
+        fullname:newUser.fullname,
+        email:newUser.email, 
+        password:newUser.password,
+        userID:"",
+        nameWarning:newUser.nameWarning,
+        emailWarning:newUser.emailWarning,
+        passwordWarning:newUser.passwordWarning
+      })
+    
+  })
+
+ app.post('/signup', (req, res)=>{
+  const credentials = {
+    fullname:req.body.fullname,
+    email:req.body.email,
+    password:req.body.password,
+    userID:""
+  }
+
+  const registerUser = registerService.auth(credentials);
+  res.end();
+ })
+
+
+
+
 
 // Final Middleware 
 // Catch all for any request not handled while express was
