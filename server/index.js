@@ -116,6 +116,16 @@ app.use(express.static(path.join(__dirname, "../client"), {extensions: ["html", 
  
  })
 
+ //BONUS
+//  app.get('/users', (req,res)=>{
+//   res.sendFile(path.join(__dirname, "../client/users.html"));
+//  })
+
+
+
+
+
+
   //REGISTER USER MiddleWare
   //render register page (first time)
   app.get('/signup', (req, res)=>{
@@ -150,14 +160,15 @@ app.use(express.static(path.join(__dirname, "../client"), {extensions: ["html", 
       else
       {
         console.log("else block2 index");
+        console.log(newUser.username);
         res.render('signup', {
+          //work in progress..
             username:newUser.username,
             email:newUser.email, 
             password:newUser.password,
             nameWarning:newUser.nameWarning,
             emailWarning:newUser.emailWarning,
             passwordWarning:newUser.passwordWarning
-            
         })
       }
     }

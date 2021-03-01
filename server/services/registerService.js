@@ -60,9 +60,9 @@ exports.auth = (credentials)=>{
 
     if(validated == true){
 
-        console.log("test passed"); 
-        console.log(newUser);
-        console.log(errorMsg);  
+        console.log("test passed validate block"); 
+        // console.log(newUser);
+        // console.log(errorMsg);  
 
         // users.push(newUser);
         
