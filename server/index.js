@@ -123,7 +123,7 @@ app.use(express.static(path.join(__dirname, "../client"), {extensions: ["html", 
       username:"", 
       email:"", 
       password:"",
-      userID:"", 
+      // userID:"", 
       nameWarning:"", 
       emailWarning:"",
       passwordWarning:""
@@ -141,9 +141,28 @@ app.use(express.static(path.join(__dirname, "../client"), {extensions: ["html", 
 
     const newUser = registerService.auth(credentials);
 
-
-    //IF ERRORS: 
-    if(newUser === null){
+    if(newUser.user !== null){
+      if(req.validated == true){
+        console.log("should work");
+        res.redirect("login");
+      }
+      else
+      {
+        console.log("huh2");
+        res.render('signup', {
+            username:newUser.username,
+            email:newUser.email, 
+            password:newUser.password,
+            nameWarning:newUser.nameWarning,
+            emailWarning:newUser.emailWarning,
+            passwordWarning:newUser.passwordWarning
+            
+        })
+      }
+    }
+    else
+    {
+      console.log("huh");
       res.render('signup', {
         username:newUser.username,
         email:newUser.email, 
@@ -152,26 +171,10 @@ app.use(express.static(path.join(__dirname, "../client"), {extensions: ["html", 
         nameWarning:newUser.nameWarning,
         emailWarning:newUser.emailWarning,
         passwordWarning:newUser.passwordWarning
-      })
-    }else{
-      res.redirect("login")
+        
+     })
     }
-      
-    
   })
-
- app.post('/signup', (req, res)=>{
-  const credentials = {
-    username:req.body.username,
-    email:req.body.email,
-    password:req.body.password,
-    userID:""
-  }
-
-  const registerUser = registerService.auth(credentials);
-  res.end();
- })
-
 
 
 
