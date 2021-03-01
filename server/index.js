@@ -142,7 +142,8 @@ app.use(express.static(path.join(__dirname, "../client"), {extensions: ["html", 
     const newUser = registerService.auth(credentials);
 
     if(newUser.user !== null){
-      if(req.validated == true){
+      console.log(newUser.validate);
+      if(newUser.validate == true){
         console.log("should work");
         res.redirect("login");
       }
