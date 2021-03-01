@@ -17,20 +17,24 @@
 
       <aside class="app-form">
         <header><h2 class="center">Sign Up For Your Free Trial Account</h2></header>
-          <form id="register">
+          <form id="register" action="/signup" method="POST">
        
             <div class="form-control">
-                <label for="fullname">Please enter your full name.</label>
-                <input id="fullname" type="text" name="fullname" placeholder="first and last name" value="jim foley"/>
+                <label for="username">Please enter your full name.</label>
+                <input id="username" type="text" name="username" placeholder="" value="<%-username%>"/>
+                <span class="warning"><%- nameWarning %> </span></label>
+                
             </div>
               <div class="form-control">
                   <label for="email">Enter an valid email address</label>
-                  <input id="email" type="text" name="email" placeholder="email address for the account" value="email@workspace.com"/>
+                  <input id="email" type="text" name="email" placeholder="" value="<%-email%>"/>
+                  <span class="warning"><%- emailWarning %></span></label>
               </div>
 
               <div class="form-control">
                 <label for="password">Enter a secure password</label>
-                <input id="password" type="text" name="password" placeholder="password for the account" value="temp"/>
+                <input id="password" type="text" name="password" placeholder="" value="<%-password%>"/>
+                <span class="warning"><%- passwordWarning %> </span></label>
             </div>
 
             <div class="form-control">

@@ -116,11 +116,11 @@ app.use(express.static(path.join(__dirname, "../client"), {extensions: ["html", 
  
  })
 
-  //Register User MiddleWare
-  //render register page
+  //REGISTER USER MiddleWare
+  //render register page (first time)
   app.get('/signup', (req, res)=>{
       res.render('signup', {
-      fullname:"", 
+      username:"", 
       email:"", 
       password:"",
       userID:"", 
@@ -130,30 +130,39 @@ app.use(express.static(path.join(__dirname, "../client"), {extensions: ["html", 
     });
   })
 
-  //register post
+  //REGISTER POST
   app.post('/signup', (req, res)=>{
     const credentials = {
-      fullname:req.body.fullname,
+      username:req.body.username,
       email:req.body.email,
       password:req.body.password,
-      userID:""
+      // userID:""
     }
+
     const newUser = registerService.auth(credentials);
+
+
+    //IF ERRORS: 
+    if(newUser === null){
       res.render('signup', {
-        fullname:newUser.fullname,
+        username:newUser.username,
         email:newUser.email, 
         password:newUser.password,
-        userID:"",
+        // userID:"",
         nameWarning:newUser.nameWarning,
         emailWarning:newUser.emailWarning,
         passwordWarning:newUser.passwordWarning
       })
+    }else{
+      res.redirect("login")
+    }
+      
     
   })
 
  app.post('/signup', (req, res)=>{
   const credentials = {
-    fullname:req.body.fullname,
+    username:req.body.username,
     email:req.body.email,
     password:req.body.password,
     userID:""
