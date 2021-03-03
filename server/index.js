@@ -14,6 +14,10 @@ const loginService = require('./services/loginService')
 //importing register service
 const registerService = require('./services/registerService')
 
+//improting user Service
+const usersService = require('./services/usersService')
+
+
 // create an instance of express
 const app = express()
  
@@ -117,13 +121,11 @@ app.use(express.static(path.join(__dirname, "../client"), {extensions: ["html", 
  })
 
  //BONUS
-//  app.get('/users', (req,res)=>{
-//   res.sendFile(path.join(__dirname, "../client/users.html"));
-//  })
-
-
-
-
+ app.get('/api/v1/users', (req,res)=>{
+  // res.sendFile(path.join(__dirname, "../client/users.html"));
+  const users = usersService.getUsers()
+  res.json(users)
+ })
 
 
   //REGISTER USER MiddleWare
@@ -163,9 +165,9 @@ app.use(express.static(path.join(__dirname, "../client"), {extensions: ["html", 
         console.log(newUser.username);
         res.render('signup', {
           //work in progress..
-            username:newUser.username,
-            email:newUser.email, 
-            password:newUser.password,
+            username:req.body.username,
+            email:req.body.email, 
+            password:req.body.password,
             nameWarning:newUser.nameWarning,
             emailWarning:newUser.emailWarning,
             passwordWarning:newUser.passwordWarning
